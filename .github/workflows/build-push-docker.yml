@@ -24,6 +24,9 @@ jobs:
 
       - name: Print Maven version
         run: mvn -v
+
+      - name: Grant execute permission to mvnw
+        run: chmod +x deploy-actions/mvnw
         
       - name: Build Quarkus project
         run: |
