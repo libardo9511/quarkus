@@ -18,7 +18,13 @@ jobs:
         with:
           distribution: 'adopt-openj9'
           java-version: '17'
-          
+
+      - name: Print Java version
+        run: java -version
+
+      - name: Print Maven version
+        run: mvn -v
+        
       - name: Build Quarkus project
         run: |
           cd deploy-actions
