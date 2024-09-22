@@ -1,8 +1,13 @@
+FROM maven:3.8.6-openjdk-17 AS build
+WORKDIR /app
+COPY . .
+RUN ./mvnw package
+
 # Usa una imagen base de OpenJDK
 FROM openjdk:17-jdk-slim
 
 # Copia el archivo JAR al contenedor
-COPY target/quarkus-run.jar /app/quarkus-run.jar
+COPY --from=build /app/target/quarkus-run.jar /app/quarkus-run.jar
 
 # Define el directorio de trabajo
 WORKDIR /app
