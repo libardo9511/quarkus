@@ -18,6 +18,9 @@ jobs:
         with:
           java-version: 17
           distribution: 'adopt-openj9' # Alternative distribution options are available.
+      - name: Entry project
+        run: |
+          cd deploy-actions
       - name: Cache SonarQube Cloud packages
         uses: actions/cache@v4
         with:
