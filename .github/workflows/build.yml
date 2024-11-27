@@ -18,9 +18,6 @@ jobs:
         with:
           java-version: 17
           distribution: 'adopt-openj9' # Alternative distribution options are available.
-      - name: Entry project
-        run: |
-          cd deploy-actions
       - name: Cache SonarQube Cloud packages
         uses: actions/cache@v4
         with:
@@ -33,8 +30,8 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Set working directory}
-        run: cd /home/runner/work/quarkus/deploy-actions
+      - name: Build with Maven
+        run: mvn clean install -DskipTests
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
